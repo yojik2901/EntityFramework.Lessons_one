@@ -13,6 +13,20 @@ namespace EntityFramework.Lessons_one
     {
         static void Main(string[] args)
         {
+            var customers = GetCustomers();
+
+            foreach (var customer in customers)
+            {
+                Console.WriteLine("Идентификатор: {0}\t Имя: {1}",
+                    customer.Id,
+                    customer.Name);
+            }
+
+            Console.ReadLine();
+        }
+
+        private static List<CustomerProxy> GetCustomers()
+        {
             using (IDbConnection connection = new SqlConnection(Settings.Default.DbConnect))
             {
                 IDbCommand command = new SqlCommand("SELECT * FROM t_customer");
@@ -22,11 +36,16 @@ namespace EntityFramework.Lessons_one
 
                 IDataReader reader = command.ExecuteReader();
 
+                List<CustomerProxy> customers = new List<CustomerProxy>();
+
                 while (reader.Read())
                 {
-                    Console.WriteLine("Идентификатор: {0}\t Имя: {1}",
-                        reader.GetInt32(0),
-                        reader.GetString(1));
+                    CustomerProxy customer = new CustomerProxy();
+
+                    customer.Id = reader.GetInt32(0);
+                    customer.Name = reader.GetString(1);
+
+                    customers.Add(customer);
                 }
 
                 Console.ReadLine();
