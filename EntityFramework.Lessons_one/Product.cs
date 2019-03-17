@@ -12,13 +12,19 @@ namespace EntityFramework.Lessons_one
     using System;
     using System.Collections.Generic;
     
-    public partial class t_order_product
+    public partial class Product
     {
-        public int OrderId { get; set; }
-        public int ProductId { get; set; }
-        public Nullable<int> Count { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Product()
+        {
+            this.OrderProducts = new HashSet<OrderProduct>();
+        }
     
-        public virtual t_order t_order { get; set; }
-        public virtual t_product t_product { get; set; }
+        public int ProductId { get; set; }
+        public string ProductName { get; set; }
+        public Nullable<int> ProductPrice { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderProduct> OrderProducts { get; set; }
     }
 }

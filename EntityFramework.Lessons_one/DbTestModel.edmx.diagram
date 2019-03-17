@@ -5,10 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d0572e6d2ad94141acd956a027e8a53f" Name="Diagram1">
-        <EntityTypeShape EntityType="TestDbModel.t_customer" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TestDbModel.t_order" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TestDbModel.t_order_product" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TestDbModel.t_product" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestDbModel.Customer" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestDbModel.Order" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestDbModel.OrderProduct" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestDbModel.Product" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
         <AssociationConnector Association="TestDbModel.FK_t_order_t_customer" ManuallyRouted="false" />
         <AssociationConnector Association="TestDbModel.FK_t_order_product_t_order" ManuallyRouted="false" />
         <AssociationConnector Association="TestDbModel.FK_t_order_product_t_product" ManuallyRouted="false" />

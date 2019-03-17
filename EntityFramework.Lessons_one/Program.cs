@@ -13,18 +13,34 @@ namespace EntityFramework.Lessons_one
     {
         static void Main(string[] args)
         {
-            var customers = GetCustomers();
+            #region Получение данных из БД вручную
+
+            //var customers = GetCustomers();
+
+            //foreach (var customer in customers)
+            //{
+            //    Console.WriteLine("Идентификатор: {0}\t Имя: {1}",
+            //        customer.Id,
+            //        customer.Name);
+            //}
+
+            #endregion
+
+            #region Получение данных из БД EntityFramework
+
+            var customers = GetCustomersEf();
 
             foreach (var customer in customers)
             {
                 Console.WriteLine("Идентификатор: {0}\t Имя: {1}",
-                    customer.Id,
-                    customer.Name);
+                    customer.CustomerId,
+                    customer.CustomerName);
             }
-
-            Console.ReadLine();
+            
+            #endregion
         }
 
+        #region Получение данных из БД вручную
         private static List<CustomerProxy> GetCustomers()
         {
             using (IDbConnection connection = new SqlConnection(Settings.Default.DbConnect))
@@ -51,5 +67,20 @@ namespace EntityFramework.Lessons_one
                 return customers;
             }
         }
+        #endregion
+
+        #region Получение данных из БД EntityFramework
+
+        private static List<Customer> GetCustomersEf()
+        {
+            var context = new TestDbContext();
+
+            var customers = context.Customer.ToList();
+
+            return customers;
+        }
+
+
+        #endregion
     }
 }

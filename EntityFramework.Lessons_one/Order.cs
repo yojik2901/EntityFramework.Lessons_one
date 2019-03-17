@@ -12,20 +12,20 @@ namespace EntityFramework.Lessons_one
     using System;
     using System.Collections.Generic;
     
-    public partial class t_order
+    public partial class Order
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public t_order()
+        public Order()
         {
-            this.t_order_product = new HashSet<t_order_product>();
+            this.OrderProducts = new HashSet<OrderProduct>();
         }
     
         public int OrderId { get; set; }
         public Nullable<int> CustomerId { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
     
-        public virtual t_customer t_customer { get; set; }
+        public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<t_order_product> t_order_product { get; set; }
+        public virtual ICollection<OrderProduct> OrderProducts { get; set; }
     }
 }

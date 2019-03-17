@@ -25,9 +25,9 @@ namespace EntityFramework.Lessons_one
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<t_customer> t_customer { get; set; }
-        public virtual DbSet<t_order> t_order { get; set; }
-        public virtual DbSet<t_order_product> t_order_product { get; set; }
-        public virtual DbSet<t_product> t_product { get; set; }
+        public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<Order> Order { get; set; }
+        public virtual DbSet<OrderProduct> OrderProduct { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
     }
 }
