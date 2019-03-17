@@ -48,7 +48,7 @@ namespace EntityFramework.Lessons_one
                     customers.Add(customer);
                 }
 
-                Console.ReadLine();
+                return customers;
             }
         }
     }
