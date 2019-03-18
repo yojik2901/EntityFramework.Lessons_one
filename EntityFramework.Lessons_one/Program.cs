@@ -11,7 +11,7 @@ namespace EntityFramework.Lessons_one
     {
         static void Main(string[] args)
         {
-            relationsCustomerOnProduct();
+            RelationsCustomerOnProduct();
         }
 
         #region Получение данных из БД вручную
@@ -74,7 +74,7 @@ namespace EntityFramework.Lessons_one
         
         #endregion
 
-        private static void relationsCustomerOnProduct()
+        private static void RelationsCustomerOnProduct()
         {
             var context = new TestDbContext();
 
@@ -83,7 +83,7 @@ namespace EntityFramework.Lessons_one
                 join op in context.OrderProducts on o.OrderId equals op.OrderId
                 join p in context.Products on op.ProductId equals p.ProductId
                 select new
-                {
+                {  
                     CustomerName = c.CustomerName,
                     ProductName = p.ProductName,
                     ProductCount = op.Count
