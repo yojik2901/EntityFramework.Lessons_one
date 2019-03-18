@@ -11,35 +11,11 @@ namespace EntityFramework.Lessons_one
     {
         static void Main(string[] args)
         {
-            #region Получение данных из БД вручную
-
-            //var customers = GetCustomers();
-
-            //foreach (var customer in customers)
-            //{
-            //    Console.WriteLine("Идентификатор: {0}\t Имя: {1}",
-            //        customer.Id,
-            //        customer.Name);
-            //}
-
-            #endregion
-
-            #region Получение данных из БД EntityFramework
-
-            var customers = GetCustomersEf();
-
-            foreach (var customer in customers)
-            {
-                Console.WriteLine("Идентификатор: {0}\t Имя: {1}",
-                    customer.CustomerId,
-                    customer.CustomerName);
-            }
-            
-            #endregion
+            relationsCustomerOnProduct();
         }
 
         #region Получение данных из БД вручную
-        private static List<CustomerProxy> GetCustomers()
+        private static void GetCustomers()
         {
             using (IDbConnection connection = new SqlConnection(Settings.Default.DbConnect))
             {
@@ -61,26 +37,63 @@ namespace EntityFramework.Lessons_one
 
                     customers.Add(customer);
                 }
-
-                return customers;
+                
+                foreach (var customer in customers)
+                {
+                    Console.WriteLine("Идентификатор: {0}\t Имя: {1}",
+                        customer.Id,
+                        customer.Name);
+                }
+                
             }
         }
         #endregion
 
         #region Получение данных из БД EntityFramework
 
-        private static List<Customer> GetCustomersEf()
+        private static void GetCustomersEf()
         {
             var context = new TestDbContext();
 
-            IQueryable<Customer> query = context.Сustomers;
+            //IQueryable<Customer> query = context.Сustomers.Where(c => c.CustomerId == 1);
 
-            List<Customer> customers = query.ToList();
+            var query = from c in context.Сustomers
+                where c.CustomerId == 1
+                select c;
 
-            return customers;
+
+            List < Customer > customers = query.ToList();
+
+            foreach (var customer in customers)
+            {
+                Console.WriteLine("Идентификатор: {0}\t Имя: {1}",
+                    customer.CustomerId,
+                    customer.CustomerName);
+            }
         }
-
-
+        
         #endregion
+
+        private static void relationsCustomerOnProduct()
+        {
+            var context = new TestDbContext();
+
+            var transactions = from c in context.Сustomers
+                join o in context.Orders on c.CustomerId equals o.CustomerId
+                join op in context.OrderProducts on o.OrderId equals op.OrderId
+                join p in context.Products on op.ProductId equals p.ProductId
+                select new
+                {
+                    CustomerName = c.CustomerName,
+                    ProductName = p.ProductName,
+                    ProductCount = op.Count
+                };
+
+            foreach (var transaction in transactions)
+            {
+                Console.WriteLine("Покупатель: {0}\tПродукт: {1}\tКоличество: {2}", 
+                    transaction.CustomerName,transaction.ProductName,transaction.ProductCount);
+            }
+        }
     }
 }
