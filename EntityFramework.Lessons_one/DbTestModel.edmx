@@ -171,21 +171,21 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="TestDbContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="t_customer" EntityType="TestDbModel.Customer" />
-          <EntitySet Name="t_order" EntityType="TestDbModel.Order" />
-          <EntitySet Name="t_order_product" EntityType="TestDbModel.OrderProduct" />
-          <EntitySet Name="t_product" EntityType="TestDbModel.Product" />
+          <EntitySet Name="Сustomers" EntityType="TestDbModel.Customer" />
+          <EntitySet Name="Orders" EntityType="TestDbModel.Order" />
+          <EntitySet Name="OrderProducts" EntityType="TestDbModel.OrderProduct" />
+          <EntitySet Name="Products" EntityType="TestDbModel.Product" />
           <AssociationSet Name="FK_t_order_t_customer" Association="Self.FK_t_order_t_customer">
-            <End Role="t_customer" EntitySet="t_customer" />
-            <End Role="t_order" EntitySet="t_order" />
+            <End Role="t_customer" EntitySet="Сustomers" />
+            <End Role="t_order" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_t_order_product_t_order" Association="Self.FK_t_order_product_t_order">
-            <End Role="t_order" EntitySet="t_order" />
-            <End Role="t_order_product" EntitySet="t_order_product" />
+            <End Role="t_order" EntitySet="Orders" />
+            <End Role="t_order_product" EntitySet="OrderProducts" />
           </AssociationSet>
           <AssociationSet Name="FK_t_order_product_t_product" Association="Self.FK_t_order_product_t_product">
-            <End Role="t_product" EntitySet="t_product" />
-            <End Role="t_order_product" EntitySet="t_order_product" />
+            <End Role="t_product" EntitySet="Products" />
+            <End Role="t_order_product" EntitySet="OrderProducts" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -194,7 +194,7 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище TestDbModelContainer" CdmEntityContainer="TestDbContext">
-          <EntitySetMapping Name="t_customer">
+          <EntitySetMapping Name="Сustomers">
             <EntityTypeMapping TypeName="TestDbModel.Customer">
               <MappingFragment StoreEntitySet="t_customer">
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
@@ -202,7 +202,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="t_order">
+          <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="TestDbModel.Order">
               <MappingFragment StoreEntitySet="t_order">
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
@@ -211,7 +211,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="t_order_product">
+          <EntitySetMapping Name="OrderProducts">
             <EntityTypeMapping TypeName="TestDbModel.OrderProduct">
               <MappingFragment StoreEntitySet="t_order_product">
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
@@ -220,7 +220,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="t_product">
+          <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="TestDbModel.Product">
               <MappingFragment StoreEntitySet="t_product">
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />

@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using EntityFramework.Lessons_one.Properties;
 
 namespace EntityFramework.Lessons_one
@@ -75,7 +73,9 @@ namespace EntityFramework.Lessons_one
         {
             var context = new TestDbContext();
 
-            var customers = context.Customer.ToList();
+            IQueryable<Customer> query = context.Сustomers;
+
+            List<Customer> customers = query.ToList();
 
             return customers;
         }
